@@ -7,7 +7,7 @@
 <script>
 
     export default {
-        name: "Count",
+        name: "count",
         data(){
             return {time:60};
         },
