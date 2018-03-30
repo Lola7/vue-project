@@ -16,14 +16,18 @@ if(localStorage.token){
     store.dispatch("INITIALIZE_DATA", data);
 }
 router.beforeEach((to, from, next) => {
-    if(store.state.userInfo.userId){
-        router.push("login");
+console.log(store.state.userInfo.userId);
+    if(store.state.userInfo.userId !== ""){
+console.log("333");
+        next("login");
     }else{
+console.log("222");
         next();
     }
 })
 
 /* eslint-disable no-new */
 new Vue({
-    router
+    router,
+    store
 }).$mount("#app")

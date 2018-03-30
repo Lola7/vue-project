@@ -20,7 +20,7 @@ export default {
         [types.INITIALIZE_DATA](state, userInfo){
             state.userId = userInfo.userId;
             state.userName = userInfo.userName;
-            STATE.authority = userInfo.authority;
+            state.authority = userInfo.authority;
         }
     }
 };

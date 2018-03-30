@@ -20,9 +20,10 @@
         methods: {
             login(){
                 let result = { userId: "1234", userName: this.userName, authority: "schoolManager"};
-                localStorage.setItem("user-info", result);
+                localStorage.setItem("user-info", JSON.stringify(result));
+                localStorage.setItem("token", "2142352342");
                 this.$store.commit("INITIALIZE_DATA", result);
-                this.$router.push({name: "home"});
+                this.$router.push({path: "home"});
             }
         }
     }
