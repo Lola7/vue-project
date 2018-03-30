@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="head">
-            <count></count>
+            <menu></menu>
         </div>
         <div>
             
@@ -9,10 +9,12 @@
     </div>
 </template>
 
-<script>
-    import count from '@/components/count.vue';
+    import menu from '@/components/menu';
     export default {
         name: "home",
+        components: {
+            menu
+        },
         created (){
             console.log(1111);
         }
