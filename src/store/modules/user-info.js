@@ -1,5 +1,5 @@
-import type from "../mutation-type";
-import ajax from "@/util/ajax"
+import types from "../mutation-type";
+// import ajax from "@/util/ajax"
 
 export default {
     state:{
@@ -10,18 +10,17 @@ export default {
 
     actions:{
         //初始化用户信息
-        initializeData({ commit }) {
-            commit('type.INITIALIZE_DATA');
+        initializeData({ commit }, data) {
+            commit('types.INITIALIZE_DATA', data);
         }
     },
 
     mutations:{
         //初始化用户信息
-        [type.INITIALIZE_DATA](state){
-
+        [types.INITIALIZE_DATA](state, userInfo){
             state.userId = userInfo.userId;
             state.userName = userInfo.userName;
-            state.authority = userInfo.authority;
+            STATE.authority = userInfo.authority;
         }
     }
 };

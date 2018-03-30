@@ -6,11 +6,24 @@ import router from './router'
 
 Vue.config.productionTip = false;
 
+if(localStorage.token){
+    let userInfo = JSON.parse(localStorage.getItem("user-info"));
+    let data = {
+        userName: userInfo.userName,
+        userId: userInfo.userId,
+        authority: userInfo.authority
+    };
+    store.dispatch("INITIALIZE_DATA", data);
+}
 router.beforeEach((to, from, next) => {
-    // body...
+    if(store.state.userInfo.userId){
+        router.push("login");
+    }else{
+        next();
+    }
 })
 
 /* eslint-disable no-new */
 new Vue({
-  router
+    router
 }).$mount("#app")

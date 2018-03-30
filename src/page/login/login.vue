@@ -7,18 +7,22 @@
 </template>
 
 <script>
-
+    import {mapState} from 'vuex';
     export default {
         name: "login",
         data(){
-            return {
-                userName: "", 
+            return { 
+                userName:"",
                 password: ""
             };
         },
+        computed: mapState.userInfo,
         methods: {
             login(){
-                this.$router.push({name: "home", params:{userId:"1234", authority:"schoolManager"}});
+                let result = { userId: "1234", userName: this.userName, authority: "schoolManager"};
+                localStorage.setItem("user-info", result);
+                this.$store.commit("INITIALIZE_DATA", result);
+                this.$router.push({name: "home"});
             }
         }
     }
@@ -26,11 +30,11 @@
 </script>
 
 <style>
-.login{
-    text-align: center;
-}
+    .login{
+        text-align: center;
+    }
 
-.row{
-    margin-bottom: 20px;
-}
+    .row{
+        margin-bottom: 20px;
+    }
 </style>
