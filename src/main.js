@@ -6,24 +6,39 @@ import router from './router'
 
 Vue.config.productionTip = false;
 
-if(localStorage.token){
+if(localStorage.getItem("token")){
     let userInfo = JSON.parse(localStorage.getItem("user-info"));
     let data = {
         userName: userInfo.userName,
         userId: userInfo.userId,
-        authority: userInfo.authority
+        role: userInfo.role
     };
-    store.dispatch("INITIALIZE_DATA", data);
+    store.dispatch("recordUserInfo", data);
 }
+
+//路由守卫：登录，角色权限验证
 router.beforeEach((to, from, next) => {
-console.log(store.state.userInfo.userId);
-    if(store.state.userInfo.userId !== ""){
-console.log("333");
-        next("login");
+console.log(to);
+    //1.通过路由名称是否为null判断此路径是否为空页面
+    if(!to.name){
+        next({ path: "/error-page", query: {errorType: "noPage"} });
     }else{
-console.log("222");
-        next();
-    }
+        //2.检查哪个路由记录需要登录验证
+        if(to.matched.some(record => record.meta.requiresAuth)){
+            if(store.state.userInfo.userId !== ""){
+                //3.检查每个路由记录权限角色是否是当前角色
+                if(to.matched.every(record => !record.meta.role || record.meta.role === store.state.userInfo.role || record.meta.role === "all")){
+                    next();
+                }else{
+                    next({ path: "errorPage", query: {errorType: "noAuthority"} });
+                }           
+            }else{
+                next({ path: "login", redirect: to.fullPath });
+            }       
+        }else{
+            next();        
+        }
+    }   
 })
 
 /* eslint-disable no-new */

@@ -20,9 +20,15 @@ export default (type='GET', url='', data={}, async=true) => {
 			requestObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			requestObj.send();
 		}else if (type == 'POST') {
+			// requestObj.open(type, url, async);
+			// requestObj.setRequestHeader("Content-type", "application/json");
+			// requestObj.send(JSON.stringify(data));
+			
+			// 老考网老接口格式
 			requestObj.open(type, url, async);
-			requestObj.setRequestHeader("Content-type", "application/json");
-			requestObj.send(JSON.stringify(data));
+			requestObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			data = (typeof data  === "object" ? JSON.stringify(data) : data);
+			requestObj.send(data);
 		}else {
 			reject('error type');
 		}

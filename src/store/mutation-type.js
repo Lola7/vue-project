@@ -1,3 +1,1 @@
-export default  {
-    INITIALIZE_DATA: "INITIALIZE_DATA"
-};
+export const RECORD_USERINFO = "RECORD_USERINFO";

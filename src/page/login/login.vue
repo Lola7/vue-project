@@ -7,22 +7,24 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState, mapMutations} from 'vuex';
     export default {
         name: "login",
         data(){
             return { 
-                userName:"",
-                password: ""
+                userName: "",
+                password: "",
+                role: ""
             };
         },
         computed: mapState.userInfo,
         methods: {
+            ...mapMutations(['RECORD_USERINFO']),
             login(){
-                let result = { userId: "1234", userName: this.userName, authority: "schoolManager"};
+                let result = { token:"231432", userId: "1234", userName: this.userName, role: "schoolManager"};
+                localStorage.setItem("token", "231432");
                 localStorage.setItem("user-info", JSON.stringify(result));
-                localStorage.setItem("token", "2142352342");
-                this.$store.commit("INITIALIZE_DATA", result);
+                this.RECORD_USERINFO(result);
                 this.$router.push({path: "home"});
             }
         }

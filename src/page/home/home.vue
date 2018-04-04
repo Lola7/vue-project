@@ -1,22 +1,26 @@
 <template>
     <div>
-        <div class="head">
-            <menu></menu>
+        <div class="header">
+            <menuComp></menuComp>
         </div>
-        <div>
+        <div class="container">
+            <router-view></router-view>
+        </div>
+        <div class="footer">
             
         </div>
     </div>
 </template>
 
-    import menu from '@/components/menu';
+<script>
+    import menuComp from '@/components/menu';
     export default {
         name: "home",
         components: {
-            menu
+            menuComp
         },
         created (){
-            console.log(1111);
+console.log(1111);
         }
     }
 </script>
