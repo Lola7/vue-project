@@ -29,7 +29,7 @@
 
 </script>
 
-<style>
+<style scoped>
     .menu{
         list-style: none;
         margin: 0;

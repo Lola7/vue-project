@@ -1,5 +1,4 @@
 import * as types from "../mutation-type";
-// import ajax from "@/util/ajax"
 
 export default {
     state:{

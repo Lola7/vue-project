@@ -20,11 +20,11 @@
             menuComp
         },
         created (){
-console.log(1111);
+console.log(this.$el);
         }
     }
 </script>
 
-<style>
+<style scoped>
     
 </style>

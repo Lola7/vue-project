@@ -1,10 +1,12 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import store from './store'
-import router from './router'
+import Vue from 'vue';
+import store from './store';
+import router from './router';
+import components from '@/components/global-components';
 
 Vue.config.productionTip = false;
+Vue.use(components);
 
 if(localStorage.getItem("token")){
     let userInfo = JSON.parse(localStorage.getItem("user-info"));
@@ -18,7 +20,6 @@ if(localStorage.getItem("token")){
 
 //路由守卫：登录，角色权限验证
 router.beforeEach((to, from, next) => {
-console.log(to);
     //1.通过路由名称是否为null判断此路径是否为空页面
     if(!to.name){
         next({ path: "/error-page", query: {errorType: "noPage"} });
@@ -39,10 +40,10 @@ console.log(to);
             next();        
         }
     }   
-})
+});
 
 /* eslint-disable no-new */
 new Vue({
     router,
     store
-}).$mount("#app")
+}).$mount("#app");

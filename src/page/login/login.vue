@@ -1,5 +1,5 @@
 <template>
-    <div id="login" class="login">
+    <div class="login">
         <div class="row"><label>用户名：</label>&emsp;<input placeholder="用户名" name="username" v-model="userName"></div>
         <div class="row"><label>密&emsp;码：</label>&emsp;<input type="password" placeholder="密码" name="password" v-model="password"></div>
         <div class="row"><input type="button" value="登录" name="login" @click="login"></div>
@@ -13,8 +13,7 @@
         data(){
             return { 
                 userName: "",
-                password: "",
-                role: ""
+                password: ""
             };
         },
         computed: mapState.userInfo,
@@ -32,7 +31,7 @@
 
 </script>
 
-<style>
+<style scoped>
     .login{
         text-align: center;
     }

@@ -1,26 +1,30 @@
 <template>
-    <table class="school-list">
-        <thead>
-            <tr>
-                <th>学校名称</th>
-                <th>学校代码</th>
-                <th>学校类型</th>
-                <th>信息管理员姓名</th>
-                <th>手机号码</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="item in schoolList">
-                <td>{{ item.orgName }}</td>
-                <td>{{ item.schoolCode }}</td>
-                <td>{{ item.type }}</td>
-                <td>{{ item.userName }}</td>
-                <td>{{ item.mobilePhone }}</td>
-                <td><a class="listUser" @click="show(item.organizationId)"  href="javascript:void(0)">成员</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div>
+        <table class="school-list">
+            <thead>
+                <tr>
+                    <th>学校名称</th>
+                    <th>学校代码</th>
+                    <th>学校类型</th>
+                    <th>信息管理员姓名</th>
+                    <th>手机号码</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="schoolList.length === 0"><td colspan="6"><loading></loading></td></tr>
+                <tr v-for="item in schoolList">
+                    <td>{{ item.orgName }}</td>
+                    <td>{{ item.schoolCode }}</td>
+                    <td>{{ item.type }}</td>
+                    <td>{{ item.userName }}</td>
+                    <td>{{ item.mobilePhone }}</td>
+                    <td><a class="listUser" @click="show(item.organizationId)" href="javascript:void(0)">成员</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <member-info v-bind:showMember="showMember" v-bind:organizationId="selectedOrganizationId"  v-on:hide="hide"></member-info>
+    </div>   
 </template>
 
 <script>
@@ -36,13 +40,20 @@
      *
      * @author Qiutm 2018/4/2
      */
-    import {querySchoolList} from '@/services/base-info';
+    import {querySchoolList} from '@/model/base-info';
+    import memberInfo from '@/page/member-info/member-info';
 
     export default {
         name: 'schoolList',
+        components: {
+            // 'dialog-model': dialog,
+            'member-info': memberInfo
+        },
         data(){
             return {
-                schoolList: []
+                schoolList: [],
+                selectedOrganizationId: '',
+                showMember: false
             };
         },
         created(){
@@ -66,17 +77,34 @@
         methods:{
             //展示学校成员
             show(id){
-console.log(id);
+                this.showMember = true;
+                this.selectedOrganizationId = id;
+            },
+            //关闭成员显示
+            hide(payload){
+                this.showMember = payload.showMember;
             }
         }
     }
 
 </script>
 
-<style>
+<style scoped>
     .school-list{
         width: 100%;
         text-align: center;
         background-color: #f6f4f0;
+        border-collapse: collapse;
+        box-shadow: 0 4px 4px rgba(0,0,0,0.3);
+    }
+
+    .school-list th{
+        padding: 10px 0;
+        background-color: #eae4c8;
+    }
+
+    .school-list td{
+        padding: 10px 0;
+        border-bottom: 1px solid #eae4c8;
     }
 </style>
