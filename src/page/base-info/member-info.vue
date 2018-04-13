@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <dialog-model title="学校教师" v-on:closeDialog="closeDialog" v-show="showMember">
+    <div v-if="showMember">
+        <dialog-model title="学校教师" v-on:closeDialog="closeDialog">
             <table>
                 <thead>
                     <tr><th>角色</th><th>姓名</th><th>年段</th><th>科目</th><th>手机号码</th></tr>

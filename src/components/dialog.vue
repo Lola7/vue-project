@@ -35,6 +35,9 @@
         created(){
 console.log("dialog created");
         },
+        destroyed(){
+console.log("dialog destroyed");
+        },
         methods: {
             close(){
                 this.$emit("closeDialog");

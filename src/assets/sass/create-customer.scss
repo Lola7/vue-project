@@ -1,0 +1,316 @@
+.org-manager {
+     $title-green: #298375;
+     /*$title-width: 120px;*/
+
+     /*padding: 0 20px;*/
+    font-size: 14px;
+    height: 100%;
+     /*overflow: hidden;*/
+    min-width: 880px;
+
+    input::input-placeholder{
+        color: #bdbdbd;
+    }
+    ::-webkit-input-placeholder {
+        color: #ddd;
+    }
+    :-moz-placeholder {
+        color: #ddd;
+    }
+    ::-moz-placeholder {
+        color: #ddd;
+    }
+    :-ms-input-placeholder {
+        color: #ddd;
+    }
+
+    .error-focus{
+        border: 1px solid rgba(201, 48, 48, 0.5) !important;
+    }
+
+    .info-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: calc(100% - 114px);
+         /*max-height: calc(100% - 113px);*/
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .info-item {
+        & + .info-item {
+            margin-top: 20px;
+        }
+    }
+
+    .info-header {
+        display: flex;
+        height: 50px;
+        /*border-bottom: 1px solid $color-l-separate-line;*/
+    }
+
+    .title {
+        box-sizing: border-box;
+         /*width: $title-width;*/
+        /*border-bottom: 2px solid $title-green;*/
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        padding-right: 10px;
+        margin-bottom: -1px;
+
+        &:before {
+            content: "";
+            display: block;
+            width: 10px;
+            height: 20px;
+            /*background: $title-green;*/
+            margin-right: 10px;
+        }
+    }
+
+    .border {
+        //width: calc(100% - #{$title-width});
+        /*border-bottom: 1px solid $color-l-separate-line;*/
+    }
+
+     /*模块内*/
+    .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 35px;
+        padding: 0 20px 20px 20px;
+
+        .input-name {
+            display: inline-block;
+            width: 80px;
+            text-align: right;
+        }
+
+        .col {
+            width: 420px;
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            .tips {
+                position: absolute;
+                top: 35px;
+                left: 80px;
+                font-size: 12px;
+                color: #b3b3b3;
+                display: none;
+            }
+
+            /*初始密码*/
+            .initial-pwd {  
+                width: 90px;
+                height: 20px;
+                line-height: 20px;
+                background: #fff;
+                border: none;
+                border-radius: 0;
+                border-right: 1px solid #000;
+                margin-right: 40px;
+                cursor: text;
+            }
+
+            /*重置回初始密码按钮*/
+            .init-pwd {  
+                height: 30px;
+            }
+
+            &.full-col {
+                width: 100%;
+            }
+
+        }
+
+        .date-input{
+            width: 120px;
+        }
+
+        input[type=text],
+        input[type=number] {
+            width: 335px;
+            height: 30px;
+        }
+
+        &.pay-method-row {
+            margin-top: 0;
+            .date-input{
+                width: 120px;
+            }
+        }
+    }
+
+     /*机构类型*/
+    .col-org-type {
+
+        .radio-wrapper {
+            & + .radio-wrapper {
+                margin-left: 46px;
+            }
+        }
+    }
+
+     /*学阶*/
+    .col-step {
+
+        .checkbox-wrapper {
+            & + .checkbox-wrapper {
+                margin-left: 46px;
+            }
+        }
+    }
+
+     /*所在地域*/
+    .region-block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 340px;
+
+        select {
+            width: 100px;
+
+            &[disabled] {
+                background: #ebebe4;
+                cursor: not-allowed;
+            }
+        }
+    }
+
+     /*付费信息*/
+    .payment {
+        border: 1px dashed #C5D9E0;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+
+    .pay-method {
+        box-sizing: border-box;
+        height: 56px;
+        width: 100%;
+        border: 1px solid #C4DBE1;
+        background: #FBFDFC;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 35px;
+
+        .method-type {
+            .max-counts {
+                width: 160px;
+                margin-right: 40px;
+            }
+        }
+
+        .left-counts {
+            display: inline-block;
+            width: 50px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 14px;
+        }
+    }
+
+    .method-type {
+        display: flex;
+        align-items: center;
+    }
+
+    .method-divider {
+        width: 1px;
+        height: 28px;
+        background: #C4DBE1;
+    }
+
+    .date-input-wrapper {
+        width: 120px;
+    }
+
+    .super-orgs {
+        box-sizing: border-box;
+        border: 1px solid #C4DBE1;
+        padding: 0 35px;
+        width: 100%;
+        min-height: 68px;
+    }
+
+    .super-org {
+        display: flex;
+        align-items: center;
+        height: 66px;
+
+        .region-block {
+             /*width: 100%;*/
+            width: 880px;
+
+            .cascade {
+                width: 140px;
+
+                &.cascade-org {
+                    width: 380px;
+                }
+            }
+        }
+    }
+
+    .del-super-org {
+        cursor: pointer;
+        color: #C8D0D2;
+        font-size: 12px;
+        margin-left: 30px;
+
+        &:hover {
+             /*color: $color-p-black;*/
+        }
+    }
+
+    .add-super-org {
+        background: #F7FBFB;
+        border: 1px solid #C4DBE1;
+        border-top: none;
+        border-radius: 0;
+        color: #64CABC;
+        cursor: pointer;
+        width: 100%;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:focus,
+        &:hover {
+            background: darken(#f7fbfb, 5%);
+            color: #61e0a3;
+        }
+
+        &:active {
+            background: darken(#f7fbfb, 5%);
+            color: #46b177;
+        }
+    }
+
+    .btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 26px;
+        /*border-top: 1px solid $color-l-separate-line;*/
+        margin-top: 35px;
+        margin-bottom: 15px;
+
+        .btn {
+            width: 110px;
+        }
+
+        .btn + .btn {
+            margin-left: 18px;
+        }
+    }
+}

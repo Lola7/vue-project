@@ -41,7 +41,7 @@
      * @author Qiutm 2018/4/2
      */
     import {querySchoolList} from '@/model/base-info';
-    import memberInfo from '@/page/member-info/member-info';
+    import memberInfo from '@/page/base-info/member-info';
 
     export default {
         name: 'schoolList',
